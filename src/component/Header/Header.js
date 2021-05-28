@@ -8,8 +8,12 @@ const Header = () => {
             <Container>
                 <Navbar.Brand href="/">FC Market</Navbar.Brand>
                 <Nav>
-                    <Nav.Link href="#home">سبد خرید</Nav.Link>
-                    <Nav.Link href="#link">حساب کاربری</Nav.Link>
+                    <Nav.Link href="#home">
+                        <i className="fa fa-shopping-cart"></i>
+                    </Nav.Link>
+                    <Nav.Link href="#link">
+                        <i className="fa fa-user"></i>
+                    </Nav.Link>
                 </Nav>  
             </Container>
         </Navbar>
