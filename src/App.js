@@ -2,6 +2,7 @@ import React from 'react'
 import { Container } from 'react-bootstrap'
 import Footer from './component/Footer/Footer'
 import Header from './component/Header/Header'
+import Home from './component/pages/Home'
 
 
 const App = () => {
@@ -10,7 +11,7 @@ const App = () => {
       <Header/>
       <main className="py-3">
         <Container>
-          <h2>FC Market</h2>
+          <Home/>
         </Container>
       </main>
       <Footer/>
