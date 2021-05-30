@@ -1,13 +1,23 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { Button, Col, Image, ListGroup, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import products from '../../products'
 
 const Product = ({match}) => {
 
-    const product = products.find((item)=>{
-        return item._id === match.params.id
-    })
+    const [product,setProduct] = useState({})
+
+    useEffect(()=>{
+        const sentReqest = async () =>{
+            const reponse = await axios.get(`http://localhost:8000/api/products/${match.params.id}`)
+            setProduct(reponse.data)
+        }
+        sentReqest()
+    },[match])
+
+    // const product = products.find((item)=>{
+    //     return item._id === match.params.id
+    // })
 
     return (
         <div>
