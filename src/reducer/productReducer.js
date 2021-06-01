@@ -7,3 +7,14 @@ export const productListReducer = (state={products : []},action) =>{
         default : return state        
     }
 }
+
+export const productReducer = (state={product : {}},action) =>{
+    switch(action.type) {
+        case 'PRODUCT-REQUEST' :
+            return {loading : true , ...state}
+        case 'PRODUCT-SUCCESS' :
+            return {loading : false , product: action.payload}
+        default : return state  
+    }
+
+}

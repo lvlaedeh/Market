@@ -15,3 +15,13 @@ export const productListAction = () => async (dispatch) =>{
         console.log(error);
     }
 }
+
+export const productAction = (id) => async (dispatch) => {
+    try {
+        dispatch({type : 'PRODUCT-REQUEST'})
+        const {data} = await axios.get(`http://localhost:8000/api/products/${id}`)
+        dispatch ({type :'PRODUCT-SUCCESS' , payload : data})
+    } catch (error) {
+        console.log(error);
+    }
+}

@@ -1,29 +1,25 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Button, Col, Image, ListGroup, Row } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { productAction } from '../../Action/productAction'
 
 const Product = ({match}) => {
 
-    const [product,setProduct] = useState({})
+    const singleProduct = useSelector((state) => state.singleProduct)
+    const {loading , product} = singleProduct
+    const dispatch = useDispatch()
 
     useEffect(()=>{
-        const sentReqest = async () =>{
-            const reponse = await axios.get(`http://localhost:8000/api/products/${match.params.id}`)
-            setProduct(reponse.data)
-        }
-        sentReqest()
-    },[match])
-
-    // const product = products.find((item)=>{
-    //     return item._id === match.params.id
-    // })
+        dispatch(productAction(match.params.id))
+    },[dispatch,match])
 
     return (
         <div>
             <Link to="/" className="btn btn-light my-3">
                 بازگشت به سبد خرید
             </Link>
+            {loading ? <h2>loadind...</h2> : 
             <Row>
                 <Col md={6}>
                     <Image src={product.image}/>
@@ -45,6 +41,8 @@ const Product = ({match}) => {
                     </ListGroup>
                 </Col>
             </Row>
+            }
+           
         </div>
     )
 }
