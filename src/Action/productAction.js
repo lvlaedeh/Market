@@ -1,12 +1,12 @@
 import axios from "axios"
 
-export const productListAction = () => async (dispath) =>{
+export const productListAction = () => async (dispatch) =>{
     try {
-        dispath({type : 'PRODUCT-LIST-REQUEST'})
+        dispatch({type : 'PRODUCT-LIST-REQUEST'})
 
         const {data} = await axios.get('http://localhost:8000/api/products')
 
-        dispath({
+        dispatch({
             type : 'PRODUCT-LIST-SUCCESS' , 
             payload : data ,
         })
