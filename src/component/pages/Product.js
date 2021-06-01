@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { productAction } from '../../Action/productAction'
 
-const Product = ({match}) => {
+const Product = ({history,match}) => {
 
     const singleProduct = useSelector((state) => state.singleProduct)
     const {loading , product} = singleProduct
@@ -13,6 +13,10 @@ const Product = ({match}) => {
     useEffect(()=>{
         dispatch(productAction(match.params.id))
     },[dispatch,match])
+
+    const addToCartHandler = () =>{
+        history.push(`/cart/${match.params.id}`)
+    }
 
     return (
         <div>
@@ -34,7 +38,9 @@ const Product = ({match}) => {
                 <Col md={3}>
                     <ListGroup>
                         <ListGroup.Item>
-                            <Button className="btn-block" type="button">
+                            <Button 
+                                onClick={addToCartHandler}
+                                className="btn-block" type="button">
                                 افزودن به سبد خرید
                             </Button>
                         </ListGroup.Item>
