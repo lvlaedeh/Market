@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Button, Col, Image, ListGroup, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { productAction } from '../../Action/productAction'
+import { productAction } from '../Action/productAction'
 
 const Product = ({history,match}) => {
 

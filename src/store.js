@@ -14,7 +14,7 @@ const cartItemsFromLocalStorge = localStorage.getItem('cartItems') ? JSON.parse(
 const middleware = [thunk]
 
 const initialState = {
-    cart : {cartItems : cartItemsFromLocalStorge}
+    cart : {cartItems : cartItemsFromLocalStorge},
 }
 const store = createStore(reducer,initialState,applyMiddleware(...middleware))
 
