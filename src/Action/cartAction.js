@@ -14,8 +14,16 @@ try {
                 })
         
         localStorage.setItem('cartItems',JSON.stringify(getState().cart.cartItems))
+
 } catch (error) {
     console.log(error);
 }
+}
+
+export const removeCartItem = (id) => (dispatch,getState)=>{
+
+    dispatch({type: 'CART-REMOVE-ITEM' , paylod : id})
+
+    localStorage.setItem('cartItems',JSON.stringify(getState().cart.cartItems))
 }
 

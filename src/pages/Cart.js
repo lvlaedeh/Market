@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import { Button, Col, Image, ListGroup, Row } from 'react-bootstrap'
+import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToCart } from '../Action/cartAction'
+import { addToCart, removeCartItem } from '../Action/cartAction'
 
 const Cart = ({match}) => {
 
@@ -16,6 +16,10 @@ const Cart = ({match}) => {
         }
     },[dispatch,productId])
     console.log(cartItems);
+
+    const removeItems = (id) => {
+        dispatch(removeCartItem(id))
+    }
 
     return (
         <div>
@@ -37,7 +41,7 @@ const Cart = ({match}) => {
                                        <Col md={2}>
                                            {item.price}
                                        </Col>
-                                       <Button type="button" variant="light">
+                                       <Button type="button" variant="light" onClick={()=> removeItems(item.product)}>
                                            <i className="fa fa-trash"></i>
                                        </Button>
                                    </Row>
@@ -47,7 +51,13 @@ const Cart = ({match}) => {
                     )}
                 </Col>
                 <Col md={4}>
-
+                    <Card>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item>
+                                مجموع قیمت : {cartItems.reduce((acc,item)=> acc + item.price,0)}
+                            </ListGroup.Item>
+                        </ListGroup>
+                    </Card>
                 </Col>
             
             </Row>
